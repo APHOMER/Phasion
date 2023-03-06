@@ -182,8 +182,7 @@ app.use(userRoutes);
 
 
 // APHOMER/Phasionistar
-// https://github.com/APHOMER/Phasionistar.git
-// git remote add origin https://github.com/APHOMER/Phasionistar.git
+// git remote add origin https://github.com/APHOMER/Phasion.git
 
 app.listen(port, () => {
     console.log(`PHASIONISTER IS RUNNING ON PORT ${port} RIGHT NOW...`);
