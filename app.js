@@ -46,7 +46,7 @@ app.use(
     }),
   );
 
-const dbUrl = process.env.MONGODB_URL || 'mongodb://127.0.0.1:27017/PhasionDB'
+const dbUrl = process.env.MONGODB_URL //|| 'mongodb://127.0.0.1:27017/PhasionDB'
 
 // store.on('error', function(e) {
 //     console.log("SESSION STORE ERROR", e)
@@ -59,9 +59,9 @@ const sessionConfig = {
     }),
     // store,
     // name: 'phasionistar',
-    name: process.env.SESSION_NAME || 'phasionistar',
+    name: process.env.SESSION_NAME, // || 'phasionistar',
     // secret: 'phasionsecret',
-    secret: process.env.MONGODB_SECRET || 'phasionsecret',
+    secret: process.env.MONGODB_SECRET, // || 'phasionsecret',
     resave: false,
     saveUninitialized: false,
     cookie: {
