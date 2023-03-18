@@ -6,8 +6,18 @@ module.exports.getNewCloth = (req, res) => {
 }
 
 module.exports.getAllClothes = async (req, res) => {
+    // let pageNumber = 2; // PAGINATION
+    // let pageSize = 10;
     try {
-        const clothes = await Product.find({});
+        const clothes = await Product.find({})
+
+        // clothes //for PAGINATION
+            // .sort('deliveryDate')
+            // .select('ownerName')
+            // .skip((pageNumber - 1) * pageSize)
+            // .limit(pageSize);
+
+            
 
         for(let cloth of clothes) {
             console.log(cloth.ownerName.toUpperCase());
@@ -34,6 +44,7 @@ module.exports.getAllClothes = async (req, res) => {
     }
 }
 
+
 module.exports.howToMeasure = (req, res) => {
     res.render('cloth/howToMeasure');
 }
@@ -52,6 +63,7 @@ module.exports.createNewCloth = async (req, res) => {
         req.flash('success', 'successfully made a new cloth');
         res.redirect('/clothings');
         // res.send(`${cloth.ownerName} has deposited ${ cloth.deposit} and it must be delivered on ${ cloth.deliveryDate }`);
+       
     } catch (error) {
         console.log('clothing error' + error)
         req.flash('error', `${error}`);
@@ -68,6 +80,8 @@ module.exports.renderEditCloth = async (req, res) => {
         }
         res.render('cloth/edit', { cloth })
     } catch(error) {
+        
+        // req.flash('error', `${error}`)
         console.log(error);
         req.flash('error', `cannot get error: ${error}`)
     }
@@ -92,7 +106,8 @@ module.exports.updateCloth = async (req, res) => {
         res.redirect(`/clothing/${cloth._id}`)
     } catch(error) {
         console.log(error);
-        req.flash('error', 'set a new Date');
+        // req.flash('error', 'set a new Date');
+
         req.flash('error', `error due to ${error}`);
     }
 }

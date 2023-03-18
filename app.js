@@ -73,9 +73,6 @@ const sessionConfig = {
 }
 app.use(session(sessionConfig)); // must always be above "passport.session under"
 app.use(flash());
-// app.use(helmet())
-// app.use(helmet({ contentSecurityPolicy: false }));  //affecting Images
-
 // app.use(
 //     helmet.contentSecurityPolicy({
 //         directives: {

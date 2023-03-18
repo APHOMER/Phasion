@@ -1,3 +1,4 @@
+// const Joi = require('joi')
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
@@ -36,8 +37,10 @@ const ProductSchema = new Schema ({
         // required: true
     },
     contact: {
-        type: Number,
+        type: String,
         required: false,
+        // minLength: [8, 'is shorter than the minimum allowed length (8)'],
+        // maxLength: [11, 'is longer than the maximum length (11) allowed']
     },
     // clothImage: {
     //     type: String,
@@ -71,8 +74,13 @@ const ProductSchema = new Schema ({
     deliveryDate: {
         type: Date,
         required: [true, 'Kindly add delivery date'],
+        // validate: {
+        //     validator: function(v) {
+        //         return v.length > 0;
+        //     },
+        //     message: 'Delivery date is required'
+        // },
         format: "dd-MM-yyyy", // "yyyy-MM-dd"
-        // default: Date.now();
         default: Date.now
     },
     leg: {
@@ -129,5 +137,20 @@ const ProductSchema = new Schema ({
 }
 )
 
+
+function validateUser(user) {
+    const schema = {
+        name: Joi.string().min(5).max(15).required(),
+        email: Joi.string().trim().lowercase().min(10).max(30).required(),
+        contact: Joi.string().trim().lowercase().min(8).max(11).required(),
+
+
+    };
+
+    return Joi.validate(user, schema);
+}
+
+
+// exports.validate = validateUser;
 
 module.exports = mongoose.model('Product', ProductSchema);

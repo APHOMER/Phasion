@@ -1,3 +1,4 @@
+// const Joi = require('joi')
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const passportLocalMongoose = require('passport-local-mongoose')
@@ -14,7 +15,9 @@ const UserSchema = new Schema({
         unique: [true, 'A user with the email provided already exit'],
         trim: true,
         lowercase: true,
-        required: true
+        required: true,
+        minLength: 10,
+        maxLength: 30
     },
     
     // phasionName: {
@@ -25,15 +28,15 @@ const UserSchema = new Schema({
     //     required: true
     // },
     
-    // password: {
-    //     type: String,
-    //     required: true,
-    //     minLength: 7,
-    //     trim: true,
-    // },
+    password: {
+        type: String,
+        required: true,
+        minLength: 7,
+        trim: true,
+    },
     // date: {
     //     type: Date,
-    //     default: Date.now()
+    //     default: Date.now
     // },
     // 
 },
@@ -42,6 +45,17 @@ const UserSchema = new Schema({
 }
 )
 
+// function validateUser(user) {
+//     const schema = {
+//         name: Joi.string().min(5).max(15).required(),
+//         email: Joi.string().trim().lowercase().min(10).max(30).required(),
+//     };
+
+//     return Joi.validate(user, schema);
+// }
+
+
 UserSchema.plugin(passportLocalMongoose)
 
+// exports.validate = validateUser;
 module.exports = mongoose.model('User', UserSchema);
