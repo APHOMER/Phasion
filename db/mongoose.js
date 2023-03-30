@@ -1,12 +1,14 @@
 const mongoose = require('mongoose');
 // const validator = require('validator');
+
+const dbUrl = process.env.PORT ? process.env.ONLINE_MONGODB_URL : process.env.MONGODB_URL;
+
 mongoose.set('strictQuery', true);
-mongoose.connect('mongodb://127.0.0.1:27017/PhasionDB', {
+mongoose.connect(dbUrl, {
     useNewUrlParser: true,
-    // useCreateIndex: true
+    // useCreateIndex: true,
+    // useUnifiedTopology: true,
+    // useFindAndModify: false
 });
 
-// mongoose.connect(process.env.MONGODB_URL, {
-//     useNewUrlParser: true,
-// });
 
