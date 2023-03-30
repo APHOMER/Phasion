@@ -46,7 +46,7 @@ app.use(
     }),
   );
 
-const dbUrl = process.env.MONGODB_URL //|| 'mongodb://127.0.0.1:27017/PhasionDB'
+const dbUrl = process.env.PORT ? process.env.ONLINE_MONGODB_URL : process.env.MONGODB_URL;
 
 // store.on('error', function(e) {
 //     console.log("SESSION STORE ERROR", e)

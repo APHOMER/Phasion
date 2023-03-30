@@ -26,7 +26,7 @@ module.exports.isAuthorize = async (req, res, next) => {
         const { id } = req.params;
         const cloth = Product.findById(id);
         // if(!cloth.owner.equals(req.user._id)) {
-        if(cloth.owner == req.user._id) {
+        if(!cloth.owner == req.user._id) {
             req.flash('error', 'you are not permitted to do this')
             return res.redirect(`/clothing/${id}`);
         } else {
