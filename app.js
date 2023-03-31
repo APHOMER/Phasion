@@ -28,7 +28,8 @@ const { Mongoose } = require('mongoose');
 
 // const MongoStore = require('connect-mongo/build/main');
 // const MongoStore = require('connect-mongo').default;
-const MongoStore = require('connect-mongo')(session);
+const MongoStore = require('connect-mongo')
+// const MongoStore = require('connect-mongo')(session);
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.json())
@@ -55,7 +56,7 @@ const dbUrl =  process.env.MONGODB_URL;
 // })
 
 const sessionConfig = {
-    store: MongoStore.create({
+    store: new MongoStore.create({
         mongoUrl: dbUrl,
         touchAfter: 24 * 60 * 60
     }),
