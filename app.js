@@ -26,9 +26,9 @@ const userRoutes = require('./router/user');
 const productRoutes = require('./router/product');
 const { Mongoose } = require('mongoose');
 
-const MongoStore = require('connect-mongo/build/main');
-// const MongoDBStore = require('connect-mongo').default;
-// const MongoDBStore = require('connect-mongo')(session);
+// const MongoStore = require('connect-mongo/build/main');
+// const MongoStore = require('connect-mongo').default;
+const MongoStore = require('connect-mongo')(session);
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.json())
@@ -47,7 +47,8 @@ app.use(
     }),
   );
 
-const dbUrl = process.env.PORT ? process.env.ONLINE_MONGODB_URL : process.env.MONGODB_URL;
+// const dbUrl = process.env.PORT ? process.env.ONLINE_MONGODB_URL : process.env.MONGODB_URL;
+const dbUrl =  process.env.MONGODB_URL;
 
 // store.on('error', function(e) {
 //     console.log("SESSION STORE ERROR", e)
