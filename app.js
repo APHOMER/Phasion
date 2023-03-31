@@ -28,6 +28,7 @@ const { Mongoose } = require('mongoose');
 
 const MongoStore = require('connect-mongo/build/main');
 // const MongoDBStore = require('connect-mongo').default;
+// const MongoDBStore = require('connect-mongo')(session);
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.json())
@@ -48,9 +49,6 @@ app.use(
 
 const dbUrl = process.env.PORT ? process.env.ONLINE_MONGODB_URL : process.env.MONGODB_URL;
 
-// store.on('error', function(e) {
-//     console.log("SESSION STORE ERROR", e)
-// })
 
 const sessionConfig = {
     store: MongoStore.create({
@@ -59,8 +57,7 @@ const sessionConfig = {
     }),
     // store,
     // name: 'phasionistar',
-    name: process.env.SESSION_NAME, // || 'phasionistar',
-    // secret: 'phasionsecret',
+    name: process.env.SESSION_NAME, // ||  'phasionistar',
     secret: process.env.MONGODB_SECRET, // || 'phasionsecret',
     resave: false,
     saveUninitialized: false,
