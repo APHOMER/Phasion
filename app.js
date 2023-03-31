@@ -55,12 +55,17 @@ const dbUrl =  process.env.MONGODB_URL;
 //     console.log("SESSION STORE ERROR", e)
 // })
 
+let store = new MongoStore({
+    mongoUrl: dbUrl,
+    touchAfter: 24 * 60 * 60
+});
+
 const sessionConfig = {
-    store: MongoStore.create({
-        mongoUrl: dbUrl,
-        touchAfter: 24 * 60 * 60
-    }),
-    // store,
+    // store: MongoStore.create({
+    //     mongoUrl: dbUrl,
+    //     touchAfter: 24 * 60 * 60
+    // }),
+    store,
     // name: 'phasionistar',
     name: process.env.SESSION_NAME, // || 'phasionistar',
     // secret: 'phasionsecret',
