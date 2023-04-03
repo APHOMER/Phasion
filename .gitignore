@@ -1,7 +1,7 @@
 node_modules/
+.env
 
 
-# .env
 # mongodb.js
 
 
@@ -26,9 +26,9 @@ node_modules/
 
 
 
-/users/user/desktop/coded/mongodbzip/bin/mongod.exe --dbpath=/users/user/desktop/coded/PHASIONDB
-shopapho-data
+# /users/user/desktop/coded/mongodbzip/bin/mongod.exe --dbpath=/users/user/desktop/coded/PHASIONDB
+# shopapho-data
 
 
 
-/users/USER/Desktop/coded/mongodbzip/bin/mongod.exe --dbpath=/users/user/desktop/coded/PHASIONDB
+# /users/USER/Desktop/coded/mongodbzip/bin/mongod.exe --dbpath=/users/user/desktop/coded/PHASIONDB
