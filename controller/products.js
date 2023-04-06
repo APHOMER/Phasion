@@ -41,6 +41,7 @@ module.exports.getAllClothes = async (req, res) => {
         
     } catch (error) {
         console.log(error);
+        res.send(`Error:${error}`)
     }
 }
 
@@ -66,7 +67,8 @@ module.exports.createNewCloth = async (req, res) => {
        
     } catch (error) {
         console.log('clothing error' + error)
-        req.flash('error', `${error}`);
+        // req.flash('error', `${error}`);  
+        res.send(`Error:${error}`)
     }
 }
 
@@ -82,7 +84,8 @@ module.exports.renderEditCloth = async (req, res) => {
     } catch(error) {
         
         // req.flash('error', `${error}`)
-        console.log(error);
+        console.log(error);  
+        res.send(`Error:${error}`)
         req.flash('error', `cannot get error: ${error}`)
     }
 }
@@ -105,10 +108,9 @@ module.exports.updateCloth = async (req, res) => {
         req.flash('success', `Weldone ${cloth.ownerName}'s measurements has been Updated`)
         res.redirect(`/clothing/${cloth._id}`)
     } catch(error) {
-        console.log(error);
-        // req.flash('error', 'set a new Date');
-
-        req.flash('error', `error due to ${error}`);
+        // console.log(error);        
+        res.send(`Error:${error}`)
+        // req.flash('error', `error due to ${error}`);
     }
 }
 
@@ -121,6 +123,7 @@ module.exports.deleteCloth = async (req, res) => {
 
     } catch(error) {
         console.log('Deleting Error ' + error);
+        res.send(`Deleting Error: ${error}`)
     }
 }
 
@@ -139,6 +142,7 @@ module.exports.getClothById = async (req, res) => {
         res.render('cloth/show', { cloth })
     } catch(error) {
         console.log(error);
+        res.send(`Error: ${error}`)
     }
 }
 

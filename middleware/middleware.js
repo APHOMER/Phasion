@@ -1,13 +1,30 @@
 const Product = require('../models/product');
 
+// module.exports.isLoggedIn = (req, res, next) => {
+//     if(!req.isAuthenticated()) {
+//         req.session.returnTo = req.originalUrl;
+//         req.flash('error', 'you must be signed in');
+//         console.log(`You must be signed in`);
+//         return res.redirect('/login');
+//     } 
+//     next();
+// }
+
 module.exports.isLoggedIn = (req, res, next) => {
-    if(!req.isAuthenticated()) {
-        req.session.returnTo = req.originalUrl;
-        req.flash('error', 'you must be signed in');
-        console.log('You must be signed in');
-        return res.redirect('/login');
-    } 
+
+    try {
+        if(!req.isAuthenticated()) {
+            req.session.returnTo = req.originalUrl;
+            req.flash('error', 'you must be signed in');
+            console.log(`You must be signed in`);
+            return res.redirect('/login');
+        } 
+        
+    } catch (error) {
+        console.log(error);
+    }
     next();
+    
 }
 
 
