@@ -2,9 +2,11 @@ node_modules/
 # .env
 
 
+
+
+
+
 # mongodb.js
-
-
 # PORT=3000
 # MONGODB_URL='mongodb://127.0.0.1:27017/PhasionDB'
 
@@ -22,7 +24,6 @@ node_modules/
 # #   api_key: '986687577347183', 
 # #   api_secret: 'HlTJiIl_7Yoi1UiJSgrHKLAPXts' 
 # # });
-
 
 
 
