@@ -10,19 +10,22 @@ const Product = require('../models/product');
 //     next();
 // }
 
-module.exports.isLoggedIn = (req, res, next) => {
+// module.exports.isLoggedIn = (req, res, next) => {
+//     if(req.isAuthenticated()){
+//         return next();
+//     }
+//     res.redirect("/login");
+// }
 
-    try {
+module.exports.isLoggedIn = (req, res, next) => {
         if(!req.isAuthenticated()) {
             req.session.returnTo = req.originalUrl;
-            req.flash('error', 'you must be signed in');
             console.log(`You must be signed in`);
+            req.flash('error', 'you must be signed in');
             return res.redirect('/login');
         } 
         
-    } catch (error) {
-        console.log(error);
-    }
+        
     next();
     
 }
@@ -46,7 +49,7 @@ module.exports.isAuthorize = async (req, res, next) => {
         if(!cloth.owner == req.user._id) {
             req.flash('error', 'you are not permitted to do this')
             return res.redirect(`/clothing/${id}`);
-        } else {
+
             next();
         }
     } catch (error) {
