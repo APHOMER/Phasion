@@ -10,16 +10,17 @@ const path = require('path');
 const methodOverride = require('method-override');
 const bodyParser = require('body-parser');
 const passport = require('passport');
-const localStrategy = require('passport-local');
+const localStrategy = require('passport-local').Strategy;
 const mongoSanitize = require('express-mongo-sanitize');
 const flash = require('connect-flash');
 // const flash = require('express-flash');
 const helmet = require('helmet')
 const port = process.env.PORT || 3004;
 
+// const mongoConnect = require('./db/mongoose')
 const db = require('./db/mongoose')
 const User = require('./models/user');
-const Product = require('./models/product');
+// const Product = require('./models/product');
 
 // routes
 const userRoutes = require('./router/user');
@@ -187,3 +188,8 @@ app.use(userRoutes);
 app.listen(port, () => {
     console.log(`PHASIONISTER IS RUNNING ON PORT ${port} RIGHT NOW...`);
 })
+
+// mongoConnect(client => {
+//     console.log(client);
+//     app.listen(port)
+// })
