@@ -131,7 +131,9 @@ module.exports.deleteCloth = async (req, res) => {
 module.exports.getClothById = async (req, res) => {
     try {
         const { id } = req.params;
-        const cloth = await Product.findById(id, { ...req.body }).populate('owner');
+        // const cloth = await Product.findById(id, { ...req.body }).populate('owner');
+        
+        const cloth = await Product.findById(id).populate('owner');
         // const cloth = await Product.findById(id, { ...req.body });
         console.log(cloth);
         if(!cloth) {
