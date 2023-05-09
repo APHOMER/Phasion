@@ -28,21 +28,21 @@ const UserSchema = new Schema({
     //     required: true
     // },
     
-    password: {
-        type: String,
-        required: true,
-        minLength: 7,
-        trim: true,
-    },
+    // password: {
+    //     type: String,
+    //     required: true,
+    //     minLength: 7,
+    //     trim: true,
+    // },
     // date: {
     //     type: Date,
     //     default: Date.now
     // },
     // 
 },
-{ 
-    timestamps: true
-}
+// { 
+//     timestamps: true
+// }
 )
 
 // function validateUser(user) {
@@ -58,4 +58,6 @@ const UserSchema = new Schema({
 UserSchema.plugin(passportLocalMongoose)
 
 // exports.validate = validateUser;
-module.exports = mongoose.model('User', UserSchema);
+const User = mongoose.model('User', UserSchema);
+
+module.exports = User;
