@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-// const validator = require('validator');
+// // const validator = require('validator');
 
 const dbUrl = process.env.PORT ? process.env.ONLINE_MONGODB_URL : process.env.MONGODB_URL;
 
@@ -10,6 +10,8 @@ mongoose.connect(dbUrl, {
     // useUnifiedTopology: true,
     // useFindAndModify: false
 });
+
+
 
 
 // mongoose.set('strictQuery', false);
@@ -23,3 +25,21 @@ mongoose.connect(dbUrl, {
 //     }
 // }
 
+
+
+// const mongodb = require('mongodb');
+// const MongoClient = mongodb.MongoClient;
+
+// const mongoConnect =callback => {
+//     MongoClient.connect(
+//         dbUrl
+//     ).then(client => {
+//         console.log('MONGODB CONNECTED');
+//         callback(client);
+//     })
+//     .catch(err => {
+//         console.log(err);
+//     });
+// };
+
+// module.exports = mongoConnect;

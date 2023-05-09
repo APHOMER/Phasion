@@ -3,6 +3,8 @@ const router = express.Router();
 // const bcrypt = require('bcryptjs');
 const passport = require('passport');
 
+const jwt = require('jsonwebtoken')
+
 const User = require('../models/user');
 const Product = require('../models/product');
 // const user = require('../models/user');
@@ -26,7 +28,7 @@ router.post('/register', async (req, res, next) => {
         req.login(registeredUser, err => {
             if(err) return next(err);
             req.flash('success', `${user.username} Welcome to Phasionistar`)
-            res.redirect('/login');
+            res.redirect('/clothings');
         })
 
     } catch(error) {
@@ -49,7 +51,7 @@ router.get('/login', (req, res) => {
 // Making use of PASSPORT-LOCAL-MONGOOSE
 router.post('/login', passport.authenticate('local', { failureFlash: true, failureRedirect: '/login' }), (req, res) => {  
     try {
-        req.flash('success', `welcome back `);  
+        req.flash('success', `welcome back `);   
         const redirectUrl = req.session.returnTo || '/clothings'
         delete req.session.returnTo;
         res.redirect(redirectUrl);
@@ -60,12 +62,51 @@ router.post('/login', passport.authenticate('local', { failureFlash: true, failu
     })
 
 
+
+// router.post("/login", function (req, res) {
+//     if (!req.body.username) {
+//         console.log("Username was not given");
+//         res.json({ success: false, 
+//             message: "Username was not given" })
+//     }
+//     else if (!req.body.password) {
+//         console.log("Password was not given")
+//         res.json({ success: false, 
+//             message: "Password was not given" })
+//     }
+//     else {
+//         passport.authenticate("local", function (err, user, info) {
+//             if (err) {
+//                 console.log(err);
+//                 res.json({ success: false, message: err });
+//             }
+//             else {
+//                 if (!user) {
+//                     console.log("username or password incorrect")
+//                     res.json({ success: false, message: "username or password incorrect" });
+//                 }
+//                 else {
+//                     const token = jwt.sign({ userId: user._id, username: user.username }, 'secretkey', { expiresIn: "24h" });
+//                     console.log("Authentication successful");
+//                     // res.json({ success: true, message: "Authentication successful", token: token });
+//                     req.flash('success', `welcome back `);   
+//                     const redirectUrl = req.session.returnTo || '/clothings'
+//                     delete req.session.returnTo;
+//                     res.redirect(redirectUrl);
+//                 }
+//             }
+//         })(req, res);
+//     }
+// });
+
+
 router.get('/logout', (req, res, next) => {
     req.logout(function (err) {
         if (err) {
         return next(err);
         }
         req.flash('success', 'session terminated');
+        console.log('you have logged out');
         res.redirect('/');
     });
 });
