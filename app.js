@@ -10,7 +10,7 @@ const path = require('path');
 const methodOverride = require('method-override');
 const bodyParser = require('body-parser');
 const passport = require('passport');
-const localStrategy = require('passport-local').Strategy;
+const LocalStrategy = require('passport-local').Strategy;
 const mongoSanitize = require('express-mongo-sanitize');
 const flash = require('connect-flash');
 // const flash = require('express-flash');
@@ -48,8 +48,8 @@ app.use(
     }),
   );
 
-const dbUrl = process.env.PORT ? process.env.ONLINE_MONGODB_URL : process.env.MONGODB_URL;
-// const dbUrl =  process.env.MONGODB_URL;
+// const dbUrl = process.env.PORT ? process.env.ONLINE_MONGODB_URL : process.env.MONGODB_URL;
+const dbUrl =  process.env.MONGODB_URL;
 
 // store.on('error', function(e) {
 //     console.log("SESSION STORE ERROR", e)
@@ -62,35 +62,22 @@ const sessionConfig = {
         touchAfter: 24 * 60 * 60
     }),
     // store,
-    // name: 'phasionistar',
-    name: process.env.SESSION_NAME, // || 'phasionistar',
-    // secret: 'phasionsecret',
-    secret: process.env.MONGODB_SECRET, // || 'phasionsecret',
+    name: 'phasionistar',
+    // name: process.env.SESSION_NAME, // || 'phasionistar',
+    secret: 'phasionsecret',
+    // secret: process.env.MONGODB_SECRET, // || 'phasionsecret',
     resave: false,
-    saveUninitialized: false,
+    saveUninitialized: true,
+    // saveUninitialized: false,
     cookie: {
         httpOnly: true,
-        secure: true,  // after deployment uncomment
+        // secure: true,  // after deployment uncomment
         expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
         maxAge: 1000 * 60 * 60 * 24 * 7
     }
 }
 app.use(session(sessionConfig)); // must always be above "passport.session under"
 app.use(flash());
-// app.use(
-//     helmet.contentSecurityPolicy({
-//         directives: {
-//             "default-src":[ "'self'" ],
-//             "base-uri":[ "'self'" ],
-//             "font-src":[ "'self'", "https:", "data:" ],
-//             "frame-ancestors":[ "'self'" ],
-//             "img-src":[ "'self'", "data:", "http://res.cloudinary.com"], //<--- HERE
-//             "script-src":[ "'self'" ],
-//             "script-src-attr":[ "'none'" ],
-//             "style-src":[ "'self'", "https:", "'unsafe-inline'" ],
-//         }
-//     })
-// );
 
 const scriptSrcUrls = [
     "https://stackpath.bootstrapcdn.com/",
@@ -142,23 +129,9 @@ app.use(
 );
 
 
-
-// app.use(
-//     helmet.contentSecurityPolicy({
-//       useDefaults: true,
-//       directives: {
-//         // "img-src": ["https://mysitename.com", "https://res.cloudinary.com/"],
-//             "img-src":[ "'self'", "data:", "http://res.cloudinary.com"],
-//             "script-src":[ "'self'", "data:", "http://bootstrap.com" ],
-//         upgradeInsecureRequests: [],
-//       },
-//       reportOnly: false,
-//     })
-//   );
-
 app.use(passport.initialize());
 app.use(passport.session()); // this line must always be under sessin (i.e two lines above
-passport.use(new localStrategy(User.authenticate()));
+passport.use(new LocalStrategy(User.authenticate()));
 
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
@@ -193,3 +166,35 @@ app.listen(port, () => {
 //     console.log(client);
 //     app.listen(port)
 // })
+
+
+
+// app.use(
+//     helmet.contentSecurityPolicy({
+//         directives: {
+//             "default-src":[ "'self'" ],
+//             "base-uri":[ "'self'" ],
+//             "font-src":[ "'self'", "https:", "data:" ],
+//             "frame-ancestors":[ "'self'" ],
+//             "img-src":[ "'self'", "data:", "http://res.cloudinary.com"], //<--- HERE
+//             "script-src":[ "'self'" ],
+//             "script-src-attr":[ "'none'" ],
+//             "style-src":[ "'self'", "https:", "'unsafe-inline'" ],
+//         }
+//     })
+// );
+
+
+
+// app.use(
+//     helmet.contentSecurityPolicy({
+//       useDefaults: true,
+//       directives: {
+//         // "img-src": ["https://mysitename.com", "https://res.cloudinary.com/"],
+//             "img-src":[ "'self'", "data:", "http://res.cloudinary.com"],
+//             "script-src":[ "'self'", "data:", "http://bootstrap.com" ],
+//         upgradeInsecureRequests: [],
+//       },
+//       reportOnly: false,
+//     })
+//   );
