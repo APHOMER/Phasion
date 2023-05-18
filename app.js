@@ -179,7 +179,7 @@ app.use(userRoutes);
 
 
 
-// /users/USER/Desktop/coded/mongodbzip/bin/mongod.exe --dbpath=/users/user/desktop/coded/PHASIONDB
+// /users/USER/Desktop/coded/mongodbzip/bin/mongod.exe --dbpath=/users/user/desktop/coded/DATABASES/PHASIONISTARDB
 
 
 // APHOMER/Phasionistar
