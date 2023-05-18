@@ -1,28 +1,24 @@
 const express = require('express');
 const router = express.Router();
-// const bcrypt = require('bcryptjs');
-const passport = require('passport');
-
-const jwt = require('jsonwebtoken')
-
 const User = require('../models/user');
 const Product = require('../models/product');
-// const user = require('../models/user');
+const passport = require('passport');
 
 
-router.get('/', (req, res) => {
-    res.render('home');
-});
+// router.get('/', (req, res) => {
+//     res.render('home');
+// });
 
 router.get('/register', (req, res) => {
     res.render('register')
 })
 
+
 // Making use of PASSPORT-LOCAL-MONGOOSE
 router.post('/register', async (req, res, next) => {
     try {
-        const { name, username, password, email } = req.body;
-        const user = new User({name,  username, password, email });
+        const { name, email, username, password, } = req.body;
+        const user = new User({ name, username, password, email });
         const registeredUser = await User.register(user, password);
         console.log(registeredUser);
         req.login(registeredUser, err => {
