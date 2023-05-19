@@ -39,7 +39,6 @@ app.set('views', path.join(__dirname, '/views'));
 
 app.use(methodOverride('_method')); // for changing post requests.
 app.use(express.static(path.join(__dirname,'public')))
-// app.use(express.static("public"));
 
 // app.use(mongoSanitize())
 app.use(
@@ -48,8 +47,8 @@ app.use(
     }),
   );
 
-// const dbUrl = process.env.PORT ? process.env.ONLINE_MONGODB_URL : process.env.MONGODB_URL;
-const dbUrl =  process.env.MONGODB_URL;
+const dbUrl = process.env.PORT ? process.env.ONLINE_MONGODB_URL : process.env.MONGODB_URL;
+// const dbUrl =  process.env.MONGODB_URL;
 
 // store.on('error', function(e) {
 //     console.log("SESSION STORE ERROR", e)
@@ -62,10 +61,10 @@ const sessionConfig = {
         touchAfter: 24 * 60 * 60
     }),
     // store,
-    name: 'phasionistar',
-    // name: process.env.SESSION_NAME, // || 'phasionistar',
-    secret: 'phasionsecret',
-    // secret: process.env.MONGODB_SECRET, // || 'phasionsecret',
+    // name: 'phasionistar',
+    name: process.env.SESSION_NAME, // || 'phasionistar',
+    // secret: 'phasionsecret',
+    secret: process.env.MONGODB_SECRET, // || 'phasionsecret',
     resave: false,
     saveUninitialized: true,
     // saveUninitialized: false,
