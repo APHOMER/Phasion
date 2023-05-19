@@ -4,12 +4,18 @@ const mongoose = require('mongoose');
 const dbUrl = process.env.PORT ? process.env.ONLINE_MONGODB_URL : process.env.MONGODB_URL;
 
 mongoose.set('strictQuery', true);
-mongoose.connect(dbUrl, {
-    useNewUrlParser: true,
-    useCreateIndex: true,
-    useUnifiedTopology: true,
-    useFindAndModify: false
-});
+// mongoose.connect(dbUrl, {
+//     useNewUrlParser: true,
+//     useCreateIndex: true,
+//     useUnifiedTopology: true,
+//     useFindAndModify: false
+// });
+
+mongoose.connect(dbUrl,
+    err => {
+        if(err) throw err;
+        console.log('connected to MongoDB')
+    });
 
 
 
