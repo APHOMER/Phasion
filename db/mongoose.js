@@ -6,9 +6,9 @@ const dbUrl = process.env.PORT ? process.env.ONLINE_MONGODB_URL : process.env.MO
 mongoose.set('strictQuery', true);
 mongoose.connect(dbUrl, {
     useNewUrlParser: true,
-    // useCreateIndex: true,
-    // useUnifiedTopology: true,
-    // useFindAndModify: false
+    useCreateIndex: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false
 });
 
 
