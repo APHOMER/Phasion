@@ -5,9 +5,9 @@ const Product = require('../models/product');
 const passport = require('passport');
 
 
-// router.get('/', (req, res) => {
-//     res.render('home');
-// });
+router.get('/', (req, res) => {
+    res.render('home');
+});
 
 router.get('/register', (req, res) => {
     res.render('register')
@@ -59,6 +59,14 @@ router.post('/login', passport.authenticate('local', { failureFlash: true, failu
 
 
 
+    router.get('/logout', (req, res) => {
+        req.logout();
+        req.flash('success', 'Goodbye');
+        res.redirect('/');
+    })
+
+
+
 // router.post("/login", function (req, res) {
 //     if (!req.body.username) {
 //         console.log("Username was not given");
@@ -96,16 +104,16 @@ router.post('/login', passport.authenticate('local', { failureFlash: true, failu
 // });
 
 
-router.get('/logout', (req, res, next) => {
-    req.logout(function (err) {
-        if (err) {
-        return next(err);
-        }
-        req.flash('success', 'session terminated');
-        console.log('you have logged out');
-        res.redirect('/');
-    });
-});
+// router.get('/logout', (req, res, next) => {
+//     req.logout(function (err) {
+//         if (err) {
+//         return next(err);
+//         }
+//         req.flash('success', 'session terminated');
+//         console.log('you have logged out');
+//         res.redirect('/');
+//     });
+// });
 
 
 router.all('*', (req, res) => {
@@ -115,47 +123,6 @@ router.all('*', (req, res) => {
 
 
 
-// router.post('/register', async (req, res) => {
-//     try {
-//         const { name, phasionName, password, email } = req.body;
-
-//         const hashPassword = await bcrypt.hash(password, 12);
-
-//         const user = new User({
-//             name, 
-//             phasionName, 
-//             password: hashPassword, 
-//             email
-//         });
-//         await user.save();
-//         res.redirect('/login');
-//     } catch(error) {
-//         console.log('Registration failed')
-//         res.status(400).send(error);
-//     }
-// })
-
-
-// router.post('/login', async(req, res) => {
-//     // const { email, password } = req.body;
-//     const { phasionName, password } = req.body;
-//     const user = await User.findOne({ phasionName })
-//     if(!user) {
-//         res.send('User not Found')
-//     }
-//     const isPasswordMatch = bcrypt.compare(password, user.password);
-//     if(isPasswordMatch) {
-//         res.send(`you are welcome ${phasionName}`)
-//     } else {
-//         res.send('Password mismatch');
-//         console.log(password, user.password);
-//     }
-
-//     // if(password === req.body.password && email === req.body.email) {
-//     //     console.log('you can log in now')
-//     // }
-//     // res.send('login in');
-// })
 
 
 
@@ -187,11 +154,5 @@ router.all('*', (req, res) => {
 // })
 
 
-
-    // router.get('/logout', (req, res) => {
-    //     req.logout();
-    //     req.flash('success', 'Goodbye');
-    //     res.redirect('/home');
-    // })
 
 module.exports = router;
