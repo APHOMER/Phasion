@@ -67,53 +67,6 @@ router.post('/login', passport.authenticate('local', { failureFlash: true, failu
 
 
 
-// router.post("/login", function (req, res) {
-//     if (!req.body.username) {
-//         console.log("Username was not given");
-//         res.json({ success: false, 
-//             message: "Username was not given" })
-//     }
-//     else if (!req.body.password) {
-//         console.log("Password was not given")
-//         res.json({ success: false, 
-//             message: "Password was not given" })
-//     }
-//     else {
-//         passport.authenticate("local", function (err, user, info) {
-//             if (err) {
-//                 console.log(err);
-//                 res.json({ success: false, message: err });
-//             }
-//             else {
-//                 if (!user) {
-//                     console.log("username or password incorrect")
-//                     res.json({ success: false, message: "username or password incorrect" });
-//                 }
-//                 else {
-//                     const token = jwt.sign({ userId: user._id, username: user.username }, 'secretkey', { expiresIn: "24h" });
-//                     console.log("Authentication successful");
-//                     // res.json({ success: true, message: "Authentication successful", token: token });
-//                     req.flash('success', `welcome back `);   
-//                     const redirectUrl = req.session.returnTo || '/clothings'
-//                     delete req.session.returnTo;
-//                     res.redirect(redirectUrl);
-//                 }
-//             }
-//         })(req, res);
-//     }
-// });
-
-
-// router.get('/logout', (req, res, next) => {
-//     req.logout(function (err) {
-//         if (err) {
-//         return next(err);
-//         }
-//         req.flash('success', 'session terminated');
-//         console.log('you have logged out');
-//         res.redirect('/');
-//     });
-// });
 
 
 router.all('*', (req, res) => {
@@ -122,36 +75,6 @@ router.all('*', (req, res) => {
 })
 
 
-
-
-
-
-// router.get('*', (req, res) => {
-//     res.send('<h1> Bad Route </h1>')
-//     // res.render('home');
-// })
-
-
-
-// router.get('/welcome', (req, res) => {
-//     res.render('welcome');
-// })
-
-
-
-
-
-// app.get('/register/:id/:review', (req, res) => {
-//     const { id, review } = req.params
-//     res.send(`<h1> Reg Page for ${id} ${review} review</h1>`)
-//     // res.render('home');
-// })
-
-// app.get('/street', (req, res) => {
-//     const { q, date } = req.query;
-//     res.send(`<h1> Reg Page for: ${q} ${date}</h1>`)
-//     // res.render('home');
-// })
 
 
 

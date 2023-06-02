@@ -43,7 +43,6 @@ app.set('views', path.join(__dirname, '/views'));
 app.use(methodOverride('_method')); // for changing post requests.
 app.use(express.static(path.join(__dirname,'public')))
 
-// app.use(mongoSanitize())
 app.use(
     mongoSanitize({
       replaceWith: '_',
@@ -51,11 +50,6 @@ app.use(
   );
 
 const dbUrl = process.env.PORT ? process.env.ONLINE_MONGODB_URL : process.env.MONGODB_URL;
-// const dbUrl =  process.env.MONGODB_URL;
-
-// store.on('error', function(e) {
-//     console.log("SESSION STORE ERROR", e)
-// })
 
 
 const sessionConfig = {
@@ -63,11 +57,8 @@ const sessionConfig = {
         mongoUrl: dbUrl,
         touchAfter: 24 * 60 * 60
     }),
-    // store,
-    // name: 'phasionistar',
-    name: process.env.SESSION_NAME, // || 'phasionistar',
-    // secret: 'phasionsecret',
-    secret: process.env.MONGODB_SECRET, // || 'phasionsecret',
+    name: process.env.SESSION_NAME, 
+    secret: process.env.MONGODB_SECRET, 
     resave: false,
     saveUninitialized: true,
     // saveUninitialized: false,
@@ -153,21 +144,9 @@ app.use(userRoutes);
 
 
 
-
-// /users/USER/Desktop/coded/mongodbzip/bin/mongod.exe --dbpath=/users/user/desktop/coded/DATABASES/PHASIONISTARDB
-
-
-// APHOMER/Phasionistar
-// git remote add origin https://github.com/APHOMER/Phasion.git
-
 app.listen(port, () => {
     console.log(`PHASIONISTER IS RUNNING ON PORT ${port} RIGHT NOW...`);
 })
-
-// mongoConnect(client => {
-//     console.log(client);
-//     app.listen(port)
-// })
 
 
 
