@@ -11,12 +11,6 @@ mongoose.connect(dbUrl, {
 //     useFindAndModify: false
 });
 
-// mongoose.connect(dbUrl,
-//     err => {
-//         if(err) throw err;
-//         console.log('connected to MongoDB')
-//     });
-
 
 
 
