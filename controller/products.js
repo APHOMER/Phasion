@@ -22,9 +22,6 @@ module.exports.getAllClothes = async (req, res) => {
         for(let cloth of clothes) {
             console.log(cloth.ownerName.toUpperCase());
             
-            // cloth.clothImages.forEach(image => {
-            //     console.log(image.url);
-            // });
 
             
 // cloth.clothImages.forEach(image => {
