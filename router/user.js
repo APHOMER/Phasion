@@ -31,7 +31,6 @@ router.post('/register', async (req, res, next) => {
         console.log('Registration failed', error);
         
         req.flash('error', `Registration failed !. ${error.message}`)
-        // req.flash('error', `Registration failed !, A user with the email provided already exit`)
         res.redirect('/register');
     }
 })
