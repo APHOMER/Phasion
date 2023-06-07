@@ -11,25 +11,3 @@ mongoose.connect(dbUrl, {
 //     useFindAndModify: false
 });
 
-
-
-
-
-
-
-// const mongodb = require('mongodb');
-// const MongoClient = mongodb.MongoClient;
-
-// const mongoConnect =callback => {
-//     MongoClient.connect(
-//         dbUrl
-//     ).then(client => {
-//         console.log('MONGODB CONNECTED');
-//         callback(client);
-//     })
-//     .catch(err => {
-//         console.log(err);
-//     });
-// };
-
-// module.exports = mongoConnect;
