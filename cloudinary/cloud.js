@@ -8,13 +8,6 @@ cloudinary.config({
   });
 
 
-// cloudinary.config({ 
-//     cloud_name: 'dfhhjkekb', 
-//     api_key: '986687577347183', 
-//     api_secret: 'HlTJiIl_7Yoi1UiJSgrHKLAPXts' 
-//   });
-
-
 const storage = new CloudinaryStorage({
     cloudinary: cloudinary,
     params: {
