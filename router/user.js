@@ -20,7 +20,7 @@ router.post('/register', async (req, res, next) => {
         const { name, email, username, password, } = req.body;
         const user = new User({ name, username, password, email });
         const registeredUser = await User.register(user, password);
-        console.log(registeredUser);
+        // console.log(registeredUser);
         req.login(registeredUser, err => {
             if(err) return next(err);
             req.flash('success', `${user.username} Welcome to Phasionistar`)
@@ -29,7 +29,6 @@ router.post('/register', async (req, res, next) => {
 
     } catch(error) {
         console.log('Registration failed', error);
-        
         req.flash('error', `Registration failed !. ${error.message}`)
         res.redirect('/register');
     }
