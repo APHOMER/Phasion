@@ -12,7 +12,7 @@ module.exports.getAllClothes = async (req, res) => {
         const clothes = await Product.find({})
 
         // clothes //for PAGINATION
-            // .sort('deliveryDate')
+            .sort('-deliveryDate')
             // .select('ownerName')
             // .skip((pageNumber - 1) * pageSize)
             // .limit(pageSize);
@@ -40,7 +40,6 @@ module.exports.createNewCloth = async (req, res) => {
         cloth.clothImages = req.files.map(f => ({ url: f.path, filename: f.filename }))
         cloth.owner = req.user._id;
         await cloth.save();
-        console.log(cloth);
         req.flash('success', 'successfully made a new cloth');
         res.redirect('/clothings');
     } catch (error) {
@@ -100,12 +99,10 @@ module.exports.deleteCloth = async (req, res) => {
     }
 }
 
-
 module.exports.getClothById = async (req, res) => {
     try {
         const { id } = req.params;
         const cloth = await Product.findById(id).populate('owner');
-        // console.log(cloth);
         if(!cloth) {
             req.flash('error', 'This cloth is not available')
             return res.redirect('/clothings')
