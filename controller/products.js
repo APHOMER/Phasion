@@ -19,9 +19,9 @@ module.exports.getAllClothes = async (req, res) => {
 
             
 
-        for(let cloth of clothes) {
-            console.log(cloth.ownerName.toUpperCase());
-        }
+        // for(let cloth of clothes) {
+        //     console.log(cloth.ownerName.toUpperCase());
+        // }
         res.render('cloth/allclothes', { clothes });
     } catch (error) {
         console.log(error);
@@ -81,8 +81,10 @@ module.exports.updateCloth = async (req, res) => {
         req.flash('success', `Weldone ${cloth.ownerName}'s measurements has been Updated`)
         res.redirect(`/clothing/${cloth._id}`)
     } catch(error) {     
-        req.flash('error', `error due to ${error}`);
-        res.send(`Error:${error}`)
+        console.log(error);
+        req.flash('error', ` ${error}`);
+        // res.send(`Error:${error}`)
+        res.redirect(`/clothings`);
     }
 }
 
