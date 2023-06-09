@@ -9,8 +9,11 @@ module.exports.getAllClothes = async (req, res) => {
     // let pageNumber = 2; // PAGINATION
     // let pageSize = 10;
     try {
-        const clothes = await Product.find({})
-
+        const clothes = await Product.find({ })
+        // clothes.owner = 
+        // const clothes = await Product.find({ }).populate('user')
+        // const clothes = await req.user.populate('owner') //.execPopulate()
+        
         // clothes //for PAGINATION
             .sort('-deliveryDate')
             // .select('ownerName')
