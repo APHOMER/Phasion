@@ -6,8 +6,8 @@ module.exports.getNewCloth = (req, res) => {
 }
 
 module.exports.getAllClothes = async (req, res) => {
-    // let pageNumber = 2; // PAGINATION
-    // let pageSize = 10;
+    // let pageNumber = 1; // PAGINATION
+    // let pageSize = 2;
     try {
         const clothes = await Product.find({ })
         // clothes.owner = 
@@ -15,7 +15,7 @@ module.exports.getAllClothes = async (req, res) => {
         // const clothes = await req.user.populate('owner') //.execPopulate()
         
         // clothes //for PAGINATION
-            .sort('-deliveryDate')
+            .sort('deliveryDate')
             // .select('ownerName')
             // .skip((pageNumber - 1) * pageSize)
             // .limit(pageSize);
