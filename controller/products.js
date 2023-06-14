@@ -80,7 +80,7 @@ module.exports.updateCloth = async (req, res) => {
             }
             await cloth.updateOne({ $pull: { clothImages: { filename: { $in: req.body.deleteClothImages } } } })
         }
-        console.log(`Weldone ${cloth.ownerName}'s measurements  has been Updated`)
+        // console.log(`Weldone ${cloth.ownerName}'s measurements  has been Updated`)
         req.flash('success', `Weldone ${cloth.ownerName}'s measurements has been Updated`)
         res.redirect(`/clothing/${cloth._id}`)
     } catch(error) {     
@@ -112,7 +112,7 @@ module.exports.getClothById = async (req, res) => {
             req.flash('error', 'This cloth is not available')
             return res.redirect('/clothings')
         }
-        console.log(cloth);
+        // console.log(cloth);
         res.render('cloth/show', { cloth })
     } catch(error) {
         console.log(error);
