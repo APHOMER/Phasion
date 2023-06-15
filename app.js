@@ -165,17 +165,3 @@ app.listen(port, () => {
 //     })
 // );
 
-
-
-// app.use(
-//     helmet.contentSecurityPolicy({
-//       useDefaults: true,
-//       directives: {
-//         // "img-src": ["https://mysitename.com", "https://res.cloudinary.com/"],
-//             "img-src":[ "'self'", "data:", "http://res.cloudinary.com"],
-//             "script-src":[ "'self'", "data:", "http://bootstrap.com" ],
-//         upgradeInsecureRequests: [],
-//       },
-//       reportOnly: false,
-//     })
-//   );
