@@ -8,20 +8,27 @@ module.exports.getNewCloth = (req, res) => {
 module.exports.getAllClothes = async (req, res) => {
     // let pageNumber = 1; // PAGINATION
     // let pageSize = 2;
+    
     try {
         const clothes = await Product.find({ })
+        // const clothes = await Product.find({ id: req.user._id })
         // clothes.owner = 
         // const clothes = await Product.find({ }).populate('user')
         // const clothes = await req.user.populate('owner') //.execPopulate()
         
         // clothes //for PAGINATION
             .sort('deliveryDate')
+            // console.log(req.user._id)
+            // console.log(currentUser);
             // .select('ownerName')
             // .skip((pageNumber - 1) * pageSize)
             // .limit(pageSize);
 
             
-
+        if(!clothes) {
+            req.flash('error', 'No Clothes available');
+            res.send("No Clothes available");
+        }
         // for(let cloth of clothes) {
         //     console.log(cloth.ownerName.toUpperCase());
         // }
