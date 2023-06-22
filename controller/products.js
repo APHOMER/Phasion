@@ -12,9 +12,7 @@ module.exports.getAllClothes = async (req, res) => {
     try {
         const clothes = await Product.find({ })
         // const clothes = await Product.find({ id: req.user._id })
-        // clothes.owner = 
         // const clothes = await Product.find({ }).populate('user')
-        // const clothes = await req.user.populate('owner') //.execPopulate()
         
         // clothes //for PAGINATION
             .sort('deliveryDate')
