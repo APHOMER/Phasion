@@ -16,8 +16,6 @@ module.exports.getAllClothes = async (req, res) => {
         
         // clothes //for PAGINATION
             .sort('deliveryDate')
-            // console.log(req.user._id)
-            // console.log(currentUser);
             // .select('ownerName')
             // .skip((pageNumber - 1) * pageSize)
             // .limit(pageSize);
