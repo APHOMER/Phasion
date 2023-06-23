@@ -25,9 +25,7 @@ module.exports.getAllClothes = async (req, res) => {
             req.flash('error', 'No Clothes available');
             res.send("No Clothes available");
         }
-        // for(let cloth of clothes) {
-        //     console.log(cloth.ownerName.toUpperCase());
-        // }
+        
         res.render('cloth/allclothes', { clothes });
     } catch (error) {
         console.log(error);
