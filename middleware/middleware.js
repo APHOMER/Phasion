@@ -29,7 +29,6 @@ module.exports.isAuthorize = async (req, res, next) => {
         const { id } = req.params;
         const cloth = await Product.findById(id);
         // const cloth = await Product.findById(req.user._id);
-        // const user = await User.findById(id);
         // const cloth = await Product.find({ id : req.user._id }).populate('owner');
         // if(!cloth.owner.equals(req.user._id)) {
         if(!cloth.owner == req.user._id) {
