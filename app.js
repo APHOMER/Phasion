@@ -1,11 +1,16 @@
+const path = require('path');
+
 if (process.env.NODE_ENV !== "production") {
     require('dotenv').config();
 }
+// require('dotenv').config({ path: path.resolve(__dirname, './.env') });
+
+console.log(process.env.SESSION_NAME);
+console.log(process.env.CLOUDINARY_CLOUD_NAME);
 
 const express = require('express');
 const app = express();
 const session = require('express-session');
-const path = require('path');
 const methodOverride = require('method-override');
 const bodyParser = require('body-parser');
 const passport = require('passport');
@@ -24,10 +29,10 @@ const User = require('./models/user');
 // routes
 const userRoutes = require('./router/user');
 const productRoutes = require('./router/product');
-// const mongoose = require('mongoose');
 
+// const mongoose = require('mongoose');
 const MongoStore = require('connect-mongo')
-// const MongoStore = require('connect-mongo')(session);
+// const MongoStore = require('connect-mongo').default;
 
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -56,8 +61,8 @@ const sessionConfig = {
     name: process.env.SESSION_NAME, 
     secret: process.env.MONGODB_SECRET, 
     resave: false,
-    saveUninitialized: true,
-    // saveUninitialized: false,
+    // saveUninitialized: true,
+    saveUninitialized: false,
     cookie: {
         httpOnly: true,
         // secure: true,  // after deployment uncomment
