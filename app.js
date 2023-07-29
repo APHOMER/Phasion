@@ -6,7 +6,7 @@ if (process.env.NODE_ENV !== "production") {
 // require('dotenv').config({ path: path.resolve(__dirname, './.env') });
 
 console.log(process.env.SESSION_NAME);
-console.log(process.env.CLOUDINARY_CLOUD_NAME);
+console.log(process.env.MONGODB_SECRET);
 
 const express = require('express');
 const app = express();
@@ -146,7 +146,7 @@ app.use(userRoutes);
 
 
 app.listen(port, () => {
-    console.log(`PHASIONISTER IS RUNNING ON PORT ${port} RIGHT NOW...`);
+    console.log(`PHASIONISTAR IS RUNNING ON PORT ${port} RIGHT NOW...`);
 })
 
 
@@ -166,3 +166,4 @@ app.listen(port, () => {
 //     })
 // );
 
+// /users/USER/Desktop/coded/mongodbzip/bin/mongod.exe --dbpath=/users/USER/DESKTOP/DATABASES/PHASIONISTARDB
