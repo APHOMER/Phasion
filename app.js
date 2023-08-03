@@ -3,8 +3,6 @@ const path = require('path');
 if (process.env.NODE_ENV !== "production") {
     require('dotenv').config();
 }
-// require('dotenv').config({ path: path.resolve(__dirname, './.env') });
-
 console.log(process.env.SESSION_NAME);
 console.log(process.env.MONGODB_SECRET);
 
@@ -32,8 +30,6 @@ const productRoutes = require('./router/product');
 
 // const mongoose = require('mongoose');
 const MongoStore = require('connect-mongo')
-// const MongoStore = require('connect-mongo').default;
-
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.json())
