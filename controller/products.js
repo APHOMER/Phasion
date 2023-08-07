@@ -113,7 +113,7 @@ module.exports.getClothById = async (req, res) => {
             req.flash('error', 'This cloth is not available')
             return res.redirect('/clothings')
         }
-        // console.log(cloth);
+        
         res.render('cloth/show', { cloth })
     } catch(error) {
         console.log(error);
